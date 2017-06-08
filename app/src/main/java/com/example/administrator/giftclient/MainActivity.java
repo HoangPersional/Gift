@@ -11,13 +11,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 View m;
 View j;
-        View k;
+View k;
 View z;
-
-        View ii;
+View ii;
 View iiii;
-
-        View mm;
+View mm;
 
     }
 }
