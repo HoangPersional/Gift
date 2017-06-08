@@ -9,14 +9,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-<<<<<<< HEAD
+
 
 View m;
 View kkk;
 
 View j;
-=======
+
 View jj;
->>>>>>> refs/remotes/origin/master
+
     }
 }
