@@ -12,5 +12,6 @@ public class MainActivity extends AppCompatActivity {
 View m;
 View j;
         View k;
+View z;
     }
 }
