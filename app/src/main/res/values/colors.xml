@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#33964a</color>
+    <color name="colorPrimaryDark">#29783b</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="step_three">#ff0099</color>
+    <color name="step_one">#ff0066</color>
+    <color name="step_two">#456654</color>
+    <color name="editTextUserNameBorder">#33964a</color>
+    <color name="editTextUserNameBackground">#ffffff</color>
+    <color name="sing_in_button_background_color">#33964a</color>
+    <color name="sing_in_press_button_background_color">#29783b</color>
+    <color name="more_option_text_color">#8387fd</color>
+    <color name="fail_color">#ff0004</color>
+    <color name="black">#000000</color>
+    <color name="black_paste">#767676</color>
+    <color name="paste">#c7c7c7</color>
+    <color name="black_dark">#515151</color>
+    <color name="back_ground_block">#ededed</color>
+    <color name="white">#ffffff</color>
+    <color name="popupSpinnerColor">#51de71</color>
+</resources>

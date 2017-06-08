@@ -1,0 +1,104 @@
+{
+  "project_info": {
+    "project_number": "802760630758",
+    "firebase_url": "https://notification-server-c4159.firebaseio.com",
+    "project_id": "notification-server-c4159",
+    "storage_bucket": "notification-server-c4159.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802760630758:android:13196dc57a811ecb",
+        "android_client_info": {
+          "package_name": "com.example.administrator.date"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "802760630758-lt1896jfq14vgv6dqnscpd0ju0mvuhci.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJW1IOPw5LZGOWuILor1j5UN89BhOxRDA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802760630758:android:3524259808b260d0",
+        "android_client_info": {
+          "package_name": "com.example.administrator.surprisegiftserver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "802760630758-lt1896jfq14vgv6dqnscpd0ju0mvuhci.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJW1IOPw5LZGOWuILor1j5UN89BhOxRDA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802760630758:android:3bb78938c830a503",
+        "android_client_info": {
+          "package_name": "com.example.administrator.giftclient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "802760630758-lt1896jfq14vgv6dqnscpd0ju0mvuhci.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJW1IOPw5LZGOWuILor1j5UN89BhOxRDA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
