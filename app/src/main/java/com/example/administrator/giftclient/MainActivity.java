@@ -10,5 +10,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 View m;
+<<<<<<< HEAD
+=======
+View j;
+        View k;
+View z;
+
+        View ii;
+View iiii;
+
+        View mm;
+
+>>>>>>> refs/remotes/origin/master
     }
 }
