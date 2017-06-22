@@ -15,4 +15,9 @@
         <item name="colorAccent">@color/editTextUserNameBorder</item> <!-- for uncheck state -->
         <item name="android:textColorSecondary">@color/paste</item> <!-- for check state -->
     </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
 </resources>

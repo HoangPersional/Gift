@@ -20,12 +20,15 @@ public class User implements Serializable,Parcelable {
     private String passWord;
     @SerializedName("sEmail")
     private String email;
+    @SerializedName("token")
+    private String token;
     public User(){}
     protected User(Parcel in) {
         id = in.readInt();
         userName = in.readString();
         passWord = in.readString();
         email = in.readString();
+        token=in.readString();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -83,5 +86,14 @@ public class User implements Serializable,Parcelable {
         dest.writeString(userName);
         dest.writeString(passWord);
         dest.writeString(email);
+        dest.writeString(token);
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

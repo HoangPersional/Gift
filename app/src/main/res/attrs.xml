@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyImageView">
+        <attr name="mySrc" format="integer"/>
+        <attr name="myBackground" format="color"/>
+    </declare-styleable>
+</resources>

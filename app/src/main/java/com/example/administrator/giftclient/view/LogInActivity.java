@@ -1,11 +1,15 @@
 package com.example.administrator.giftclient.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +28,7 @@ import android.widget.Toast;
 import com.example.administrator.giftclient.MainActivity;
 import com.example.administrator.giftclient.R;
 import com.example.administrator.giftclient.config.Config;
+import com.example.administrator.giftclient.model.Event;
 import com.example.administrator.giftclient.model.User;
 import com.example.administrator.giftclient.service.GetMessageBroadCast;
 import com.example.administrator.giftclient.support.ConnectServer;
@@ -49,11 +54,13 @@ public class LogInActivity extends AppCompatActivity
     private CheckBox remember;
     private User user;
     private Gson gson;
-
+    boolean is_login=false;
+    Handler handler;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin);
+        handler=new Handler();
         userName = (EditText) findViewById(R.id.et_user_name);
         passWord = (EditText) findViewById(R.id.et_pass_word);
         signIn = (Button) findViewById(R.id.bt_sign_in);
@@ -67,6 +74,12 @@ public class LogInActivity extends AppCompatActivity
         user = new User();
         gson = new Gson();
         init();
+        final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+
+        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+        }
+
     }
 
     @Override
@@ -81,7 +94,7 @@ public class LogInActivity extends AppCompatActivity
     @Override
     public void response(String response) {
         progressBar.setVisibility(View.INVISIBLE);
-
+        Log.v("CLIENT",response);
         if (response.contains("sUserName")) {
             user = gson.fromJson(response, User.class);
             storeData();
@@ -97,9 +110,11 @@ public class LogInActivity extends AppCompatActivity
         } else if (response.equals("fail")) {
             status.setText(getResources().getString(R.string.no_user) + " " + user.getUserName());
         }
+        is_login=false;
     }
 
     protected void setMenu(View v) {
+        handler.removeCallbacks(loginRunable);
         PopupMenu popupMenu = new PopupMenu(this, v);
         MenuInflater menuInflater = popupMenu.getMenuInflater();
         menuInflater.inflate(R.menu.more_option, popupMenu.getMenu());
@@ -109,6 +124,15 @@ public class LogInActivity extends AppCompatActivity
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.it_create_account:
+                Intent intent = new Intent(this, SignUpActivity.class);
+                startActivityForResult(intent, REQUEST_SIGN_UP);
+                break;
+            case R.id.it_forgot_password:
+                Toast.makeText(LogInActivity.this, "You got it on next version", Toast.LENGTH_SHORT).show();
+                break;
+        }
         return true;
     }
 
@@ -119,33 +143,29 @@ public class LogInActivity extends AppCompatActivity
             user = (User) data.getBundleExtra("data").getParcelable("user");
             userName.setText(user.getUserName());
             passWord.setText(user.getPassWord());
-            CountDownTimer countDownTimer = new CountDownTimer(2000, 1000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-
-                }
-
-                @Override
-                public void onFinish() {
-                    login();
-                }
-            }.start();
-
+            handler.postDelayed(loginRunable,2000);
         }
     }
 
     public void login() {
-        status.setText("");
-        user.setUserName(userName.getText().toString());
-        user.setPassWord(passWord.getText().toString());
-        if (!user.getUserName().isEmpty() && !user.getPassWord().isEmpty()) {
-            progressBar.setVisibility(View.VISIBLE);
-            connectServer.setUrl(Config.LOG_IN);
-            HashMap<String, String> map = new HashMap<>();
-            map.put("username", user.getUserName());
-            map.put("password", user.getPassWord());
-            connectServer.setPara(map);
-            connectServer.connect();
+        if(is_login==false)
+        {
+            is_login=true;
+            signIn.setEnabled(false);
+            status.setText("");
+            user.setUserName(userName.getText().toString());
+            user.setPassWord(passWord.getText().toString());
+            if (!user.getUserName().isEmpty() && !user.getPassWord().isEmpty()) {
+                progressBar.setVisibility(View.VISIBLE);
+                connectServer.setUrl(Config.LOG_IN);
+                HashMap<String, String> map = new HashMap<>();
+                map.put("username", user.getUserName());
+                map.put("password", user.getPassWord());
+                map.put("token",token());
+                map.put("from","client");
+                connectServer.setPara(map);
+                connectServer.connect();
+            }
         }
     }
 
@@ -171,9 +191,20 @@ public class LogInActivity extends AppCompatActivity
             passWord.setText(user.getPassWord());
         }
     }
-    public void token()
+    public String token()
     {
         String token=getSharedPreferences(Config.PREF,0).getString("token","");
-        Log.v("HHC",token);
+        return token;
     }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+    }
+    Runnable loginRunable=new Runnable() {
+        @Override
+        public void run() {
+            login();
+        }
+    };
 }

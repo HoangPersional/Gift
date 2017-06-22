@@ -24,6 +24,7 @@ public class GiftClientMessageService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
 //        Gson gson = new Gson();
 //        Message message = gson.fromJson(remoteMessage.getData().toString(), Message.class);
+//        Log.v("HH",remoteMessage.getData().toString());
         Map<String,String> map=remoteMessage.getData();
         HashMap<String,String> hashMap=new HashMap<>(map);
         Intent intent = new Intent();
